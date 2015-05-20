@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- JS Script -->
+<script src="script.js"></script>
+
+<!-- Bootstrap CSS  -->
+<link href="bootstrap.min.css"	rel="stylesheet">
+
+<!-- CSS StyleSheet -->
+<style>
+	body{
+		background-color:grey;
+	}
+	
+	.container{
+		background-color:white;
+		margin:auto;
+		padding:10px;
+	}
+	
+	.title{
+		width:370px;
+		margin:auto;
+	}
+
+	.pad {
+		width:650px;
+		height:650px;
+		margin:auto;
+	}
+	
+	.controlPad {
+		width: 160px;
+		margin:auto;
+	}
+</style>
+	
+<title>OpenCV Buildathon</title>
+<div class="navbar-wrapper">
+	<div class="navbar">
+		<div class="container">
+			<div class="title">	
+				<h1>OpenCV Buildathon</h1>
+			</div>
+		</div>
+	</div>
+</div> 
+
+<div class="container-fluid">
+	<div class="container" id="controlPanel">
+		<div class="controlPad">
+			<button id="start" name="START">START</button>
+			<button id="stop" name="STOP">STOP</button>
+			</br>
+			
+<!--  		<label for="fps">FPS</label>
+			</br>
+			<input name="fps" type="text" id="fps" readonly> -->
+		</div>
+	</div>
+	<div class="container" style="border-top: solid 5px grey">
+		<div class="pad">
+			<canvas width="600px" height="600px" id="video" style="background-color:black;">
+			</canvas>
+		</div>
+	</div>
+</div>
+</head>
+<body>
+
+
+</body>
+</html>
