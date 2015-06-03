@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!--Jquery Script-->
+<script src="jquery-1.11.3.min.js"></script>
+
+<!-- JS Script -->
+<script>
+/*
+ * This program has been created by Phillip Ochola Mak'Anyengo to be used during 
+ * the ihub Research buildathon on OpenCV. Any use beyond this purpose should 
+ * be done with consent from the stated creator
+ */
+
+//Some needed constants
+var localUrl = "ws://192.168.0.30:560"; //Change to current ip address of Edison w.r.t user PC
+var control = new Object();
+control.state = 0;
+
+$().ready(function(){
+	//On Window.Load variables
+	var context = $('#canvas')[0].getContext('2d');
+	var currentProg = 3; //This is the current algorithm being implemented on the python script
+	var fps = 0;
+	var image = new Image();
+	imgWidth = 512;
+	imgHeight = 512;
+	control.state = 0;
+
+	
+	//Setup websocket when window loaded
+	connection = new WebSocket(localUrl); 
+	
+	connection.onopen = function(evt) { 
+		console.log("Connection Initiated!");
+	}; 
+	
+	connection.onclose = function(evt) { 
+		console.log("Connection to Websocket Closed!");
+	}; 
+	
+	connection.onmessage = function(evt) {
+		if (control.state ==1){
+			//console.log(evt.data);//Debugging Purposes
+			//Update canvas with image info
+			image.src = "data:image/jpg;base64,"+evt.data;
+			console.log(image.width);
+			context.drawImage(image,2,2);
+			connection.send(currentProg);//Algorithm is recalled
+		}
+	}; 
+	
+	connection.onerror = function(evt) {
+		console.log("Error on Connection!! : "+ evt.data);
+	}; 
+	
+	//Button functions
+	$("#startVid").click(function(){
+		control.state = 1;
+		connection.send(1)
+		connection.send(3);
+	});//Start Button
+	
+	$("#stopVid").click(function(){
+		connection.send(2)
+		control.state = 0;
+	});//Stop Button
+
+});
+</script>
+
+<!-- Bootstrap CSS  -->
+<link href="bootstrap.min.css"	rel="stylesheet">
+
+<!-- CSS StyleSheet -->
+<style>
+	body{
+		background-color:grey;
+	}
+	
+	.container{
+		background-color:white;
+		margin:auto;
+		padding:10px;
+	}
+	
+	.title{
+		width:600px;
+		margin:auto;
+	}
+
+	.pad {
+		width:650px;
+		height:650px;
+		margin:auto;
+	}
+	
+	.controlPad {
+		width: 160px;
+		margin:auto;
+	}
+</style>
+	
+<title>OpenCV Buildathon</title>
+
+</head>
+<body>
+<div class="navbar-wrapper">
+	<div class="navbar">
+		<div class="container">
+			<div class="title">	
+				<h1>OpenCV Buildathon Video Viewer</h1>
+			</div>
+		</div>
+	</div>
+</div> 
+
+<div class="container-fluid">
+	<div class="container" id="controlPanel">
+		<div class="controlPad">
+			<button id="startVid" name="START">START</button>
+			<button id="stopVid" name="STOP">STOP</button>
+			</br>
+		</div>
+	</div>
+	<div class="container" style="border-top: solid 5px grey">
+		<div class="pad">
+			<canvas width="600px" height="600px" id="canvas" style="background-color:black;">
+			</canvas>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
