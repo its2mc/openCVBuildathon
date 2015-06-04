@@ -23,9 +23,10 @@ $().ready(function(){
 	var context = $('#canvas')[0].getContext('2d');
 	var currentProg = 1; //This is the current algorithm being implemented on the python script
 	var image = new Image();
+	var canvasWidth = 700;
+	var setWidth = 700, setLength = 0, factor = 0;
 	control.state = 0;
 
-	
 	//Setup websocket when window loaded
 	connection = new WebSocket(localUrl); 
 	
@@ -42,7 +43,14 @@ $().ready(function(){
 			//console.log(evt.data);//Debugging Purposes
 			//Update canvas with image info
 			image.src = "data:image/jpg;base64,"+evt.data;
-			context.drawImage(image,2,2);
+			if (image.width > canvasWidth) {
+				factor = canvasWidth / image.width;
+				setLength = Math.round(factor * image.length);
+				context.drawImage(image,2,2,setWidth,setLength);
+			};
+			else{
+				context.drawImage(image,2,2);
+			};
 			connection.send(currentProg); //Algorithm is recalled
 		}
 	}; 
