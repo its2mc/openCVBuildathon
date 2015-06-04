@@ -22,10 +22,7 @@ $().ready(function(){
 	//On Window.Load variables
 	var context = $('#canvas')[0].getContext('2d');
 	var currentProg = 3; //This is the current algorithm being implemented on the python script
-	var fps = 0;
 	var image = new Image();
-	imgWidth = 512;
-	imgHeight = 512;
 	control.state = 0;
 
 	
@@ -45,7 +42,6 @@ $().ready(function(){
 			//console.log(evt.data);//Debugging Purposes
 			//Update canvas with image info
 			image.src = "data:image/jpg;base64,"+evt.data;
-			console.log(image.width);
 			context.drawImage(image,2,2);
 			connection.send(currentProg);//Algorithm is recalled
 		}
@@ -66,6 +62,11 @@ $().ready(function(){
 		connection.send(2)
 		control.state = 0;
 	});//Stop Button
+
+	$("#close").click(function(){
+		connection.close();
+		control.state = 0;
+	});//Close Button
 
 });
 </script>
@@ -92,7 +93,7 @@ $().ready(function(){
 
 	.pad {
 		width:650px;
-		height:650px;
+		height:600px;
 		margin:auto;
 	}
 	
@@ -121,12 +122,13 @@ $().ready(function(){
 		<div class="controlPad">
 			<button id="startCam" name="START">START</button>
 			<button id="stopCam" name="STOP">STOP</button>
+			<button id="close">CLOSE</button>
 			</br>
 		</div>
 	</div>
 	<div class="container" style="border-top: solid 5px grey">
 		<div class="pad">
-			<canvas width="600px" height="600px" id="canvas" style="background-color:black;">
+			<canvas width="650px" height="590px" id="canvas" style="background-color:black;">
 			</canvas>
 		</div>
 	</div>
