@@ -23,8 +23,8 @@ from autobahn.twisted.websocket import WebSocketServerProtocol, WebSocketServerF
 
 #Websocket Event Handling
 class MyServerProtocol(WebSocketServerProtocol):
-    def onConnect(self, request): #Message displayed when there is a connection
-        print "Connection opened"
+	def onConnect(self, request): #Message displayed when there is a connection
+		print "Connection opened"
 
 	def onOpen(self): #Message displayed when server opened
 		print "WebSocket connection open"
@@ -50,21 +50,21 @@ class MyServerProtocol(WebSocketServerProtocol):
 			
 		#if (message == '2'): #add extra algorithm like this
 				
-    def onClose(self, wasClean, code, reason):#Message displayed when there is an error
-        print format(reason)
+	def onClose(self, wasClean, code, reason):#Message displayed when there is an error
+		print format(reason)
 
 
 	
 #Start Websocket Server
 if __name__ == '__main__':
-    import sys
-    from twisted.internet import reactor
+	import sys
+	from twisted.internet import reactor
 
-    factory = WebSocketServerFactory("ws://localhost:555", debug=False)#Set debug false to save on processing time
-    factory.protocol = MyServerProtocol
+	factory = WebSocketServerFactory("ws://localhost:555", debug=False)#Set debug false to save on processing time
+	factory.protocol = MyServerProtocol
 
-    reactor.listenTCP(555, factory)
-    reactor.run()
+	reactor.listenTCP(555, factory)
+	reactor.run()
 		
 
 	
