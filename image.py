@@ -29,15 +29,17 @@ class MyServerProtocol(WebSocketServerProtocol):
 	def onOpen(self): #Message displayed when server opened
 		print "WebSocket connection open"
 		
-    def onMessage(self, payload, isBinary): #Code that runs when message is triggered
-		message = format(payload.decode('utf8')) #Message decoded as utf8
-		
 	def onMessage(self, payload, isBinary):#Code that runs when message is triggered
 		message = format(payload.decode('utf8')) #Message decoded as utf8
 		
 		if (message == '1'):#Multiple Image displaying algorithms can be added below
 			#Replace your own code here. Below is a simple example
+			
+			
 			img = cv2.imread('res/facetest.jpg')
+			
+			
+			
 			
 			#The code below sends the image to the Image viewer. DO NOT DELETE
 			#the image is passed to the encoder as img, you can pass any other image matrix

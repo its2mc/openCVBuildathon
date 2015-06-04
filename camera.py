@@ -47,7 +47,11 @@ class MyServerProtocol(WebSocketServerProtocol):
 			#Remember to refer to video capture as self.cap
 			#Replace your own code here. Below is a simple example
 			
+			
+			
 			ret,frame = self.cap.read()
+			
+			
 			
 			#The code below sends the captured frame to the Camera viewer. DO NOT DELETE
 			#the image is passed to the encoder as frame, you can pass any other image matrix
