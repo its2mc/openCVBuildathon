@@ -5,7 +5,7 @@
 1. First clone the repo to your edison board from the commandline
 
 2. Make sure all the python pip dependencies have been installed </br>
- a. numpy : pip install numpy (npm install numpy -U "if numpy is already installed")</br>
+ a. numpy : pip install numpy (pip install numpy -U "if numpy is already installed")</br>
  b. autobahn : pip install autobahn (pip install autobahn -U "if autobahn is already installed")</br>
  c. twisted : pip install twisted (pip install twisted -U "if twisted is already installed")</br>
 	
