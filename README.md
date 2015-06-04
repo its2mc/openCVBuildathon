@@ -1,4 +1,5 @@
-# openCVBuildathon
+# openCVBuildathon Viewing Framework
+
 Support files for the intel edison opencv Buildathon
 
 

@@ -24,7 +24,7 @@ $().ready(function(){
 	var currentProg = 1; //This is the current algorithm being implemented on the python script
 	var image = new Image();
 	var canvasWidth = 700;
-	var setWidth = 700, setLength = 0, factor = 0;
+	var setWidth = 700, setHeight = 0, factor = 0;
 	control.state = 0;
 
 	//Setup websocket when window loaded
@@ -45,8 +45,8 @@ $().ready(function(){
 			image.src = "data:image/jpg;base64,"+evt.data;
 			if (image.width > canvasWidth) {
 				factor = canvasWidth / image.width;
-				setLength = Math.round(factor * image.length);
-				context.drawImage(image,2,2,setWidth,setLength);
+				setHeight = Math.round(factor * image.height);
+				context.drawImage(image,2,2,setWidth,setHeight);
 			};
 			else{
 				context.drawImage(image,2,2);
