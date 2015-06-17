@@ -1,5 +1,5 @@
 PROJECT GUIDE
-The aim of these pilot projects is to show how opencv and imaging in general can be used as a dynamic sensor to control different hardware components
+The aim of these pilot projects is to show how opencv and imaging in general can be used as a dynamic sensor to control different hardware components <br/>
 Project 1:  This project detects faces from a live camera capture, and toggles an led on and off when a face is detected.
 
 Project 2:  This project extends project 1 by adding an rgblcd screen that gives a count of the number of faces detected.
