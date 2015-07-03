@@ -17,21 +17,21 @@ This will run the code in the background while any output will be written to out
 
 ###Running image Viewer
 5. Edit the image.html document in the static folder. Change the localUrl variable to the edison device ip address
-with respect to your computer.
+with respect to your computer.<br/> For example: var localUrl = "ws://192.168.3.169:550"; //Change to current ip address of Edison w.r.t user PC <br/> Change to : var localUrl = "ws://192.168.1.2:550"; //Change to current ip address of Edison w.r.t user PC where 192.168.1.2 is the url of the edison on my network
 6. Save and exit. Edit the image.py file in the main folder. You can choose to replace your own code as instructed
 on the document, or you can choose to run the sample as it is.
 7. To run the script you can run "python image.py"
 
 ###Running Video Viewer
 5. Edit the video.html document in the static folder. Change the localUrl variable to the edison device ip address
-with respect to your computer.
+with respect to your computer.<br/> For example: var localUrl = "ws://192.168.3.169:550"; //Change to current ip address of Edison w.r.t user PC <br/> Change to : var localUrl = "ws://192.168.1.2:550"; //Change to current ip address of Edison w.r.t user PC where 192.168.1.2 is the url of the edison on my network
 6. Save and exit. Edit the video.py file in the main folder. You can choose to replace your own code as instructed
-on the document, or you can choose to run the sample as it is.
+on the document, or you can choose to run the sample as it is. 
 7. To run the script you can run "python video.py"
 
 ###Running Camera Viewer (Some users have reported issues with the camera. Please contact if any problems occur)
 5. Edit the camera.html document in the static folder. Change the localUrl variable to the edison device ip address
-with respect to your computer.
+with respect to your computer.<br/> For example: var localUrl = "ws://192.168.3.169:550"; //Change to current ip address of Edison w.r.t user PC <br/> Change to : var localUrl = "ws://192.168.1.2:550"; //Change to current ip address of Edison w.r.t user PC where 192.168.1.2 is the url of the edison on my network
 6. Save and exit. Edit the camera.py file in the main folder. You can choose to replace your own code as instructed
 on the document, or you can choose to run the sample as it is.
 7. To run the script you can run "python camera.py"
