@@ -72,7 +72,7 @@ if __name__ == '__main__':
 	import sys
 	from twisted.internet import reactor
 
-	factory = WebSocketServerFactory("ws://localhost:555", debug=False)#Set debug false to save on processing time
+	factory = WebSocketServerFactory("ws://localhost:560", debug=False)#Set debug false to save on processing time
 	factory.protocol = MyServerProtocol
 
 	reactor.listenTCP(560, factory)

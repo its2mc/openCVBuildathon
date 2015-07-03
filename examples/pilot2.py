@@ -8,11 +8,11 @@ import mraa
 import time
 import sys
 import signal
+import pyupm_i2clcd as lcd
 
 # Setup LED variables
 ledPin = mraa.Gpio(2) 
 ledPin.dir(mraa.DIR_OUT)
-# display - lcd
 # display - lcd
 lcdDisplay = lcd.Jhd1313m1(0, 0x3E, 0x62)
 
