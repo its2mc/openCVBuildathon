@@ -10,8 +10,8 @@ from a video file saved in the res folder and camera.py captures a series of ima
 camera connected to the device. 
 
 To view the Output form the different scripts, once you run the server according to the 
-instructions below, go to the urls e.g. localhost:5800/image.html or localhost:800/camera.html
-or localhost:800/video.html
+instructions below, go to the urls e.g. localhost:5800/image.html or localhost:5800/camera.html
+or localhost:5800/video.html
 
 To add your program, simply insert your image manipulation algorithm in the spaces designated 
 as shown below
@@ -43,7 +43,6 @@ or your computer and access from a different server, provided you connect to the
 raspberry pi.
 
 
- 
 
 ##Installation and Running (DEBIAN)
 
@@ -66,6 +65,20 @@ opencv, python, pip, nodejs and npm.
 2. In your command line typing "<i>npm server</i>" will start up the web server, although you can start it from a remote pc. 
 
 3. To start all the python scripts just run "<i>npm run-scripts</i>" onto your command line. This will run image.py, video.py, camera.py log
+their outputs to image.log, video.log and camera.log respectively. 
+
+
+##Installation and Running (ARMSTRONG--not tested) 
+
+1. The prerequisite programs required to run the program are python, pip, opencv, pyopencv, numpy, autobahn(websocket library),
+twisted. To simplify the installation process I have made a script to install the various components. After installing
+nodejs and npm just run "<i>npm install</i>" followed by "<i>npm run setup-edison</i>" on your command line which should do the rest. This is 
+made for the linux operating system, specifically debian based systems
+i.e. with apt-get.
+
+2. In your command line typing "<i>npm run server</i>" will start up the web server, although you can start it from a remote pc. 
+
+3. To start the python scripts just run "<i>npm run imageServer</i>" for the image server, "<i>npm run cameraServer</i>" for the camera server and "<i>npm run videoServer</i>" for the video server onto your command line. This will run image.py, video.py, camera.py log
 their outputs to image.log, video.log and camera.log respectively. 
 
 ##Installation in other systems

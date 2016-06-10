@@ -3,14 +3,21 @@
 
 import numpy as np
 import cv2
-import mraa 
+#import mraa  #this is the i/o library for intel edison/galileo
+import RPi.GPIO as gpio
 import time
 import sys
 import signal
 
 # Setup LED variables
-ledPin = mraa.Gpio(2) 
-ledPin.dir(mraa.DIR_OUT)
+gpio.setmode(gpio.BOARD)  # use P1 header pin numbering convention
+gpio.setwarnings(False)   # don't want to hear about how pins are already in use
+
+ledPin = 2
+gpio.setup(ledPin,gpio.OUT)
+
+#ledPin = mraa.Gpio(2) 
+#ledPin.dir(mraa.DIR_OUT)
 
 #Setup Opencv Cascade algorithms
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
@@ -27,7 +34,8 @@ def toggleLED():
 		trigger = 1
 	elif trigger == 1:
 		trigger = 0
-	ledPin.write(trigger)
+	gpio.output(ledPin,trigger) #turn off or on according to the trigger
+	#ledPin.write(trigger)
 	
 def exit(signum, frame):
 	# restore the original signal handler as otherwise evil things will happen
