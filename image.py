@@ -63,7 +63,7 @@ if __name__ == '__main__':
 	factory = WebSocketServerFactory("ws://localhost:5555")#Set debug false to save on processing time
 	factory.protocol = MyServerProtocol
 
-	reactor.listenTCP(555, factory)
+	reactor.listenTCP(5555, factory)
 	reactor.run()
 		
 
