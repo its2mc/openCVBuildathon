@@ -17,8 +17,8 @@ To add your program, simply insert your image manipulation algorithm in the spac
 as shown below
 
 '''
-#Multiple Image displaying algorithms can be added below
-if (message == '1'):
+
+if (message == '1'):#Multiple Image displaying algorithms can be added below
 			#Replace your own code here. Below is a simple example
 			
 			
