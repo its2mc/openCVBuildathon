@@ -10,7 +10,7 @@ from a video file saved in the res folder and camera.py captures a series of ima
 camera connected to the device. 
 
 To view the Output form the different scripts, once you run the server according to the 
-instructions below, go to the urls e.g. localhost:800/image.html or localhost:800/camera.html
+instructions below, go to the urls e.g. localhost:5800/image.html or localhost:800/camera.html
 or localhost:800/video.html
 
 To add your program, simply insert your image manipulation algorithm in the spaces designated 
