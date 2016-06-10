@@ -1,37 +1,65 @@
 # openCVBuildathon Viewing Framework
 
-##Installation
+## Description
+This is a simple framework that allows for developers to quickly test out their python
+opencv programs and view the results on a website. The python programs are separated into 3
+image.py, camera.py, video.py. Each script captures a image from a separate source i.e. 
+image.py captures a static image saved in the same folder, video.py captures a series of images
+from a video file saved in the url described and camera.py captures a series of images from a 
+camera connected to the device. 
+To add your program, simply insert your image manipulation algorithm in the spaces designated 
+as shown below
 
-1. First clone the repo to your edison board from the commandline
+'''
+if (message == '1'):#Multiple Image displaying algorithms can be added below
+			#Replace your own code here. Below is a simple example
+			
+			
+			img = cv2.imread('res/facetest.jpg')
+			
+			
+			
+			
+			#The code below sends the image to the Image viewer. DO NOT DELETE
+			#the image is passed to the encoder as img, you can pass any other image matrix
+			encode_param=[1,90]
+			res, image = cv2.imencode('.jpg',img,encode_param)
+			sample = base64.b64encode(image)
+			self.sendMessage(sample, isBinary)
+			
+		#if (message == '2'): #add extra algorithm like this
+'''
 
-2. Make sure all the python pip dependencies have been installed </br>
- a. numpy : pip install numpy (If numpy is already installed do not run. run "pip list" to check for installed packages)</br>
- b. autobahn : pip install autobahn (pip install autobahn -U "if autobahn is already installed")</br>
- c. twisted : pip install twisted (Shows a memory related error on some users. Ignore this message and continue. If there are further problems please contact.)</br>
-	
-3. Make sure the nodejs npm dependencies have been installed
-	a. express : npm install -g express --update
-	
-4. Run the streaming server using this command : node stream.js > output.txt &
-This will run the code in the background while any output will be written to output.txt.
+The img variable stores the image that can be manipulated on command from the website.
+The python script is basically a websocket server so you can run this remotely on your raspberry pi
+or your computer and access from a different server, provided you connect to the ip address of the 
+raspberry pi.
+ 
 
-###Running image Viewer
-5. Edit the image.html document in the static folder. Change the localUrl variable to the edison device ip address
-with respect to your computer.<br/> For example: var localUrl = "ws://192.168.3.169:550"; //Change to current ip address of Edison w.r.t user PC <br/> Change to : var localUrl = "ws://192.168.1.2:550"; //Change to current ip address of Edison w.r.t user PC where 192.168.1.2 is the url of the edison on my network
-6. Save and exit. Edit the image.py file in the main folder. You can choose to replace your own code as instructed
-on the document, or you can choose to run the sample as it is.
-7. To run the script you can run "python image.py"
+##Installation and Running (DEBIAN)
 
-###Running Video Viewer
-5. Edit the video.html document in the static folder. Change the localUrl variable to the edison device ip address
-with respect to your computer.<br/> For example: var localUrl = "ws://192.168.3.169:550"; //Change to current ip address of Edison w.r.t user PC <br/> Change to : var localUrl = "ws://192.168.1.2:550"; //Change to current ip address of Edison w.r.t user PC where 192.168.1.2 is the url of the edison on my network
-6. Save and exit. Edit the video.py file in the main folder. You can choose to replace your own code as instructed
-on the document, or you can choose to run the sample as it is. 
-7. To run the script you can run "python video.py"
+1. The prerequisite programs required to run the program are python, pip, opencv, pyopencv, numpy, autobahn(websocket library),
+twisted. To simplify the installation process I have made a script to install the various components. After installing
+nodejs and npm just run "npm install" followed by "npm setup-deb" on your command line which should do the rest. This is 
+made for the linux operating system, specifically debian based systems
+i.e. with apt-get.
 
-###Running Camera Viewer (Some users have reported issues with the camera. Please contact if any problems occur)
-5. Edit the camera.html document in the static folder. Change the localUrl variable to the edison device ip address
-with respect to your computer.<br/> For example: var localUrl = "ws://192.168.3.169:550"; //Change to current ip address of Edison w.r.t user PC <br/> Change to : var localUrl = "ws://192.168.1.2:550"; //Change to current ip address of Edison w.r.t user PC where 192.168.1.2 is the url of the edison on my network
-6. Save and exit. Edit the camera.py file in the main folder. You can choose to replace your own code as instructed
-on the document, or you can choose to run the sample as it is.
-7. To run the script you can run "python camera.py"
+2. In your command line typing "npm run-server " will start up the web server, although you can start it from a remote pc. 
+
+3. To start all the python scripts just run "npm run-scripts" onto your command line. This will run image.py, video.py, camera.py log
+their outputs to image.log, video.log and camera.log respectively. 
+
+##Installation (Windows)
+
+1. To run the programs in windows, you can still run the "npm install" then "npm setup-win" This is assuming that you have already installed
+opencv, python, pip, nodejs and npm.
+
+2. In your command line typing "npm run-server " will start up the web server, although you can start it from a remote pc. 
+
+3. To start all the python scripts just run "npm run-scripts" onto your command line. This will run image.py, video.py, camera.py log
+their outputs to image.log, video.log and camera.log respectively. 
+
+##Installation in other systems
+
+1. To add installation scripts for more systems please feel free to contribute.
+

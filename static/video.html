@@ -14,7 +14,7 @@
  */
 
 //Some needed constants
-var localUrl = "ws://192.168.3.169:560"; //Change to current ip address of Edison w.r.t user PC
+var localUrl = "ws://localhost:560"; //Change to current ip address of Edison w.r.t user PC
 var control = new Object();
 control.state = 0;
 
@@ -23,16 +23,24 @@ $().ready(function(){
 	var context = $('#canvas')[0].getContext('2d');
 	var currentProg = 3; //This is the current algorithm being implemented on the python script
 	var image = new Image();
-
+	var retryAttempts = 5;
 	
 	//Setup websocket when window loaded
-	connection = new WebSocket(localUrl); 
+	localUrl = $("ipAddress").val();
+	if(localUrl!=undefined)
+		var connection = new WebSocket(localUrl);
 	
 	connection.onopen = function(evt) { 
 		console.log("Connection Initiated!");
 	}; 
 	
 	connection.onclose = function(evt) { 
+		if(retryAttempts>0){
+			localUrl = $("ipAddress").val();
+			if(localUrl!=undefined)
+				connection = new WebSocket(localUrl);
+			retryAttempts--;
+		}
 		console.log("Connection to Websocket Closed!");
 	}; 
 	
@@ -121,6 +129,7 @@ $().ready(function(){
 			<button id="startVid" name="START">START</button>
 			<button id="stopVid" name="STOP">STOP</button>
 			<button id="close">CLOSE</button>
+			<input type="text" id="ipAddress" value="ws://localhost:5556">
 			</br>
 		</div>
 	</div>

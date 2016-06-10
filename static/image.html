@@ -14,7 +14,7 @@
  */
 
 //Some needed constants
-var localUrl = "ws://192.168.3.169:555"; //Change to current ip address of Edison w.r.t user PC
+var localUrl = ""; //Change to current ip address of Edison w.r.t user PC
 var control = new Object();
 control.state = 0;
 
@@ -25,16 +25,24 @@ $().ready(function(){
 	var image = new Image();
 	var canvasWidth = 700;
 	var setWidth = 700, setHeight = 0, factor = 0;
+	var retryAttempts = 5;
 
 	//Setup websocket when window loaded
-	connection = new WebSocket(localUrl); 
+	localUrl = $("ipAddress").val();
+	if(localUrl!=undefined)
+		connection = new WebSocket(localUrl); 
 	
 	connection.onopen = function(evt) { 
 		console.log("Connection Initiated!");
 	}; 
 	
 	connection.onclose = function(evt) { 
-		console.log("Connection to Websocket Closed!");
+		if(retryAttempts>0){
+			localUrl = $("ipAddress").val();
+			if(localUrl!=undefined)
+				connection = new WebSocket(localUrl);
+			retryAttempts--;
+		}
 	}; 
 	
 	connection.onmessage = function(evt) {
@@ -129,6 +137,7 @@ $().ready(function(){
 			<button id="startImg" name="START">PROCESS</button>
 			<button id="stop">STOP</button>
 			<button id="close">CLOSE</button>
+			<input type="text" id="ipAddress" value="ws://localhost:5555">
 			</br>
 		</div>
 	</div>

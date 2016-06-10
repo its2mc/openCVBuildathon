@@ -1,0 +1,38 @@
+{
+  "name": "opencvview",
+  "version": "2.0.0",
+  "description": "Simple webbased framwork for test and and viewing python opencv scripts and algorithms",
+  "main": "",
+  "directories": {
+    "example": "examples"
+  },
+  "dependencies": {
+    "express": "^4.13.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "run-server": "node stream.js > stream.log&",
+    "run-scripts": "python image.py > image.log& || python video.py > video.log& || python camera.py > camera.log&",
+    "setup-deb": "sudo bash ./setup/setup.sh",
+    "setup-win": "setup/setup.bat",
+    "setup-edison": "sudo bash ./setup/edison.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/its2mc/openCVBuildathon.git"
+  },
+  "keywords": [
+    "opencv",
+    "opencv",
+    "websocket",
+    "pyopencv",
+    "hackathon",
+    "buildathon"
+  ],
+  "author": "PhilMc <its2uraps@gmail.com> (https://github.com/its2mc/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/its2mc/openCVBuildathon/issues"
+  },
+  "homepage": "https://github.com/its2mc/openCVBuildathon#readme"
+}
