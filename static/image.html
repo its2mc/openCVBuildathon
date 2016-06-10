@@ -17,6 +17,7 @@
 var localUrl = ""; //Change to current ip address of Edison w.r.t user PC
 var control = new Object();
 control.state = 0;
+var connection;
 
 $().ready(function(){
 	//On Window.Load variables
@@ -28,7 +29,8 @@ $().ready(function(){
 	var retryAttempts = 5;
 
 	//Setup websocket when window loaded
-	localUrl = $("ipAddress").val();
+	localUrl = $("#ipAddress").val();
+	console.log(localUrl);
 	if(localUrl!=undefined)
 		connection = new WebSocket(localUrl); 
 	
@@ -70,7 +72,26 @@ $().ready(function(){
 	//Button functions
 	$("#startImg").click(function(){
 		control.state = 1;
-		connection.send(currentProg);
+		if(connection.readyState===2||connection.readyState===3){
+			localUrl = $("#ipAddress").val();
+			if(localUrl!=undefined)
+				connection = new WebSocket(localUrl);
+			retryAttempts = 5;
+			//I shouldnt do this
+			//short term fix
+			connection.onopen = function(evt) { 
+				console.log("Connection Initiated!");
+				connection.send(currentProg);
+			}; 
+		}
+		else if (connection.readyState===0){
+			connection.onopen = function(evt) { 
+				console.log("Connection Initiated!");
+				connection.send(currentProg);
+			}; 
+		}
+		else 
+			connection.send(currentProg);
 	});//Start Button
 	
 	$("#stop").click(function(){

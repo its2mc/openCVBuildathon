@@ -17,6 +17,7 @@
 var localUrl = "ws://localhost:550"; //Change to current ip address of Edison w.r.t user PC
 var control = new Object();
 control.state = 0;
+var connection;
 
 $().ready(function(){
 	//On Window.Load variables
@@ -26,9 +27,9 @@ $().ready(function(){
 	var retryAttempts = 5;
 	
 	//Setup websocket when window loaded
-	localUrl = $("ipAddress").val();
+	localUrl = $("#ipAddress").val();
 	if(localUrl!=undefined)
-		var connection = new WebSocket(localUrl);
+		connection = new WebSocket(localUrl);
 	
 	connection.onopen = function(evt) { 
 		console.log("Connection Initiated!");
@@ -36,7 +37,7 @@ $().ready(function(){
 	
 	connection.onclose = function(evt) { 
 		if(retryAttempts>0){
-			localUrl = $("ipAddress").val();
+			localUrl = $("#ipAddress").val();
 			if(localUrl!=undefined)
 				connection = new WebSocket(localUrl);
 			retryAttempts--;
@@ -61,12 +62,34 @@ $().ready(function(){
 	//Button functions
 	$("#startCam").click(function(){
 		control.state = 1;
-		connection.send(1)
-		connection.send(3);
+		if(connection.readyState===2||connection.readyState===3){
+			localUrl = $("#ipAddress").val();
+			if(localUrl!=undefined)
+				connection = new WebSocket(localUrl);
+			retryAttempts = 5;
+			//I shouldnt do this
+			//short term fix
+			connection.onopen = function(evt) { 
+				console.log("Connection Initiated!");
+				connection.send(1);
+				connection.send(3);
+			}; 
+		}
+		else if (connection.readyState===0){
+			connection.onopen = function(evt) { 
+				console.log("Connection Initiated!");
+				connection.send(1);
+				connection.send(3);
+			}; 
+		}
+		else {
+			connection.send(1);
+			connection.send(3);
+		}
 	});//Start Button
 	
 	$("#stopCam").click(function(){
-		connection.send(2)
+		connection.send(2);
 		control.state = 0;
 	});//Stop Button
 
@@ -130,7 +153,7 @@ $().ready(function(){
 			<button id="startCam" name="START">START</button>
 			<button id="stopCam" name="STOP">STOP</button>
 			<button id="close">CLOSE</button>
-			<input type="text" id="ipAddress" value="ws://localhost:5557">
+			<input type="text" id="ipAddress" value="ws://localhost:5556">
 			</br>
 		</div>
 	</div>

@@ -11,11 +11,13 @@
   },
   "devDependencies": {},
   "scripts": {
-    "run-server": "node stream.js > stream.log&",
-    "run-scripts": "python image.py > image.log& || python video.py > video.log& || python camera.py > camera.log&",
-    "setup-deb": "sudo bash ./setup/setup.sh",
-    "setup-win": "setup/setup.bat",
-    "setup-edison": "sudo bash ./setup/edison.sh"
+    "server": "node stream.js > stream.log&",
+    "imageServer": "python image.py > image.log& ",
+    "cameraServer": "python camera.py > camera.log& ",
+    "videoServer": "python video.py > video.log& ",
+    "setup-deb": "cd setup && sudo bash setup.sh",
+    "setup-win": "cd setup && start setup.bat ^& exit",
+    "setup-edison": "cd setup && sudo bash edison.sh"
   },
   "repository": {
     "type": "git",

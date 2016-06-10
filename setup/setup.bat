@@ -1,3 +1,1 @@
-pip install numpy ||
-pip install autobahn ||
-pip install twisted
+pip install numpy autobahn twisted
